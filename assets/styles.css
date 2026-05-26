@@ -89,6 +89,42 @@ body {
 }
 
 /* ══════════════════════════════
+   PREVENTA
+══════════════════════════════ */
+.preventa-divider {
+  position: relative;
+  width: 36px;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  margin: 0.55rem auto 0.55rem;
+}
+.preventa-list {
+  list-style: none;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+  position: relative;
+  margin-bottom: 0.55rem;
+}
+.preventa-list li {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.92;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+.preventa-list li::before {
+  content: '✓';
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
    ETIQUETA DE SECCIÓN
 ══════════════════════════════ */
 .sec-label {
