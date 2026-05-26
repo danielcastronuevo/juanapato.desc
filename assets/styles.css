@@ -1,0 +1,149 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink:       #FF307C;
+  --pink-light: #EF99FF;
+  --white:      #ffffff;
+  --black:      #000000;
+  --gray:       #444444;
+  --bg-soft:    #FFF0F7;
+  --bg-row:     #FFF7FB;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.5;
+}
+
+/* ===== PROMO BANNER (header) ===== */
+.banner {
+  background: var(--pink);
+  color: var(--white);
+  text-align: center;
+  padding: 1.25rem 1rem 1rem;
+}
+.banner__badge {
+  display: inline-block;
+  background: var(--white);
+  color: var(--pink);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0.2rem 0.8rem;
+  border-radius: 5px;
+  margin-bottom: 0.55rem;
+  letter-spacing: -1px;
+}
+.banner__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.55rem;
+}
+.banner__cats {
+  font-size: 0.82rem;
+  opacity: 0.92;
+  margin-bottom: 0.3rem;
+}
+.banner__how {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* ===== AVISO ===== */
+.aviso {
+  background: var(--bg-soft);
+  border-left: 4px solid var(--pink);
+  padding: 0.8rem 1rem;
+}
+.aviso__title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--pink);
+  margin-bottom: 0.25rem;
+}
+.aviso__body {
+  font-size: 0.86rem;
+  color: var(--pink);
+  line-height: 1.55;
+}
+.aviso__body a {
+  color: var(--pink);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--pink);
+}
+
+/* ===== TALLES ===== */
+.talles-wrap { padding: 0.85rem 1rem; }
+
+.talles-intro {
+  font-size: 0.86rem;
+  color: var(--gray);
+  line-height: 1.55;
+  margin-bottom: 0.8rem;
+}
+
+.talles-img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 0.9rem;
+  border-radius: 5px;
+  border: 1px solid #FFD6EB;
+}
+
+/* Table cells */
+.tabla { width: 100%; font-family: sans-serif; }
+.tabla__header {
+  display: flex;
+  justify-content: space-around;
+  background: var(--pink);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+.tabla__header div { padding: 7px 0; }
+.tabla__row {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--pink);
+}
+.tabla__row:nth-child(even) { background: var(--bg-row); }
+.tabla__cell { padding: 7px 8px; width: 50%; font-size: 0.88rem; }
+.tabla__cell + .tabla__cell { border-left: 1px solid var(--pink); }
+
+/* ===== INFO / PAGO ===== */
+.info-wrap { padding: 0.85rem 1rem; }
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 7px;
+  background: var(--bg-soft);
+  margin-bottom: 0.45rem;
+}
+.info-item:last-child { margin-bottom: 0; }
+.info-item__ico { font-size: 1.1rem; flex-shrink: 0; }
+.info-item__strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--black);
+  display: block;
+  line-height: 1.25;
+}
+.info-item__sub {
+  font-size: 0.78rem;
+  color: var(--gray);
+  display: block;
+}
