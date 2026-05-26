@@ -8,16 +8,21 @@
 </head>
 <body>
 
-  <p class="talles-intro">
-    Medí tu pie descalza en centímetros, desde el talón hasta la punta del dedo más largo.
-    Si quedás entre dos talles, te recomendamos llevar el mayor.
-  </p>
+  <div class="sec-label">Guía de talles</div>
+
+  <div class="talles-tip">
+    <i class="talles-tip__ico">📏</i>
+    <p class="talles-tip__text">
+      Medí tu pie descalza desde el talón hasta la punta del dedo más largo.
+      Si quedás entre dos talles, llevá el mayor.
+    </p>
+  </div>
 
   <img src="../assets/grafico-medida.jpg" alt="Cómo medir tu pie" class="talles-img">
 
-  <!-- tabla-1: GENERAL (default) -->
+  <!-- Tabla 1 · General (35–40) -->
   <div class="tabla tabla-1">
-    <div class="tabla__header"><div>talle</div><div>cm</div></div>
+    <div class="tabla__header"><div>Talle</div><div>cm</div></div>
     <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
     <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
     <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
@@ -26,9 +31,9 @@
     <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">26</div></div>
   </div>
 
-  <!-- tabla-2: FURIA/ANTO/MELINA/BRILLIT -->
+  <!-- Tabla 2 · Furia / Anto / Melina / Brillit (35–40) -->
   <div class="tabla tabla-2">
-    <div class="tabla__header"><div>talle</div><div>cm</div></div>
+    <div class="tabla__header"><div>Talle</div><div>cm</div></div>
     <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
     <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
     <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
@@ -37,9 +42,9 @@
     <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">25,5</div></div>
   </div>
 
-  <!-- tabla-3: KATY/JADE/VERA -->
+  <!-- Tabla 3 · Katy / Jade / Vera (36–40) -->
   <div class="tabla tabla-3">
-    <div class="tabla__header"><div>talle</div><div>cm</div></div>
+    <div class="tabla__header"><div>Talle</div><div>cm</div></div>
     <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
     <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
     <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">25</div></div>
@@ -49,26 +54,9 @@
 
   <script>
     var params = new URLSearchParams(location.search);
-    var sku = params.get('sku');
-    var productId = params.get('productId');
-
-    function showTable(id) {
-      document.querySelector('.tabla-1').style.display = id == 2 ? 'none' : id == 3 ? 'none' : 'flex';
-      document.querySelector('.tabla-2').style.display = id == 2 ? 'flex' : 'none';
-      document.querySelector('.tabla-3').style.display = id == 3 ? 'flex' : 'none';
-    }
-
-    if (sku) {
-      fetch('../products.json')
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          var p = data[sku];
-          showTable(p ? p.tabla : 1);
-        })
-        .catch(function() { showTable(1); });
-    } else {
-      showTable(productId || 1);
-    }
+    // ?tabla= es el nuevo parámetro; ?productId= se mantiene como fallback
+    var id = parseInt(params.get('tabla') || params.get('productId') || '1', 10);
+    document.querySelector('.tabla-' + id).style.display = 'flex';
   </script>
 
   <script src="../assets/resize.js"></script>
