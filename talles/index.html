@@ -15,7 +15,7 @@
 
   <img src="../assets/grafico-medida.jpg" alt="Cómo medir tu pie" class="talles-img">
 
-  <!-- tabla-1: GENERAL (productId=1 o default) -->
+  <!-- tabla-1: GENERAL (default) -->
   <div class="tabla tabla-1">
     <div class="tabla__header"><div>talle</div><div>cm</div></div>
     <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
@@ -26,7 +26,7 @@
     <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">26</div></div>
   </div>
 
-  <!-- tabla-2: FURIA/ANTO/MELINA/BRILLIT (productId=2) -->
+  <!-- tabla-2: FURIA/ANTO/MELINA/BRILLIT -->
   <div class="tabla tabla-2">
     <div class="tabla__header"><div>talle</div><div>cm</div></div>
     <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
@@ -37,7 +37,7 @@
     <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">25,5</div></div>
   </div>
 
-  <!-- tabla-3: KATY/JADE/VERA (productId=3) -->
+  <!-- tabla-3: KATY/JADE/VERA -->
   <div class="tabla tabla-3">
     <div class="tabla__header"><div>talle</div><div>cm</div></div>
     <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
@@ -48,17 +48,26 @@
   </div>
 
   <script>
-    var t1 = document.querySelector('.tabla-1');
-    var t2 = document.querySelector('.tabla-2');
-    var t3 = document.querySelector('.tabla-3');
-    var productId = new URLSearchParams(window.location.search).get('productId');
+    var params = new URLSearchParams(location.search);
+    var sku = params.get('sku');
+    var productId = params.get('productId');
 
-    if (productId == 2) {
-      t2.style.display = 'flex';
-    } else if (productId == 3) {
-      t3.style.display = 'flex';
+    function showTable(id) {
+      document.querySelector('.tabla-1').style.display = id == 2 ? 'none' : id == 3 ? 'none' : 'flex';
+      document.querySelector('.tabla-2').style.display = id == 2 ? 'flex' : 'none';
+      document.querySelector('.tabla-3').style.display = id == 3 ? 'flex' : 'none';
+    }
+
+    if (sku) {
+      fetch('../products.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var p = data[sku];
+          showTable(p ? p.tabla : 1);
+        })
+        .catch(function() { showTable(1); });
     } else {
-      t1.style.display = 'flex';
+      showTable(productId || 1);
     }
   </script>
 
