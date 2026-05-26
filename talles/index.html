@@ -8,71 +8,57 @@
 </head>
 <body>
 
-  <div class="talles-wrap">
+  <p class="talles-intro">
+    Medí tu pie descalza en centímetros, desde el talón hasta la punta del dedo más largo.
+    Si quedás entre dos talles, te recomendamos llevar el mayor.
+  </p>
 
-    <p class="talles-intro">
-      Medí tu pie descalza en centímetros, desde el talón hasta la punta del dedo más largo.
-      Si quedás entre dos talles, te recomendamos llevar el mayor.
-    </p>
+  <img src="../assets/grafico-medida.jpg" alt="Cómo medir tu pie" class="talles-img">
 
-    <img src="../assets/grafico-medida.jpg" alt="Cómo medir tu pie" class="talles-img">
+  <!-- tabla-1: GENERAL (productId=1 o default) -->
+  <div class="tabla tabla-1">
+    <div class="tabla__header"><div>talle</div><div>cm</div></div>
+    <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
+    <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
+    <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
+    <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">25</div></div>
+    <div class="tabla__row"><div class="tabla__cell">39</div><div class="tabla__cell">25,5</div></div>
+    <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">26</div></div>
+  </div>
 
-    <!-- tabla-1: GENERAL (productId=1 o default) -->
-    <div class="tabla tabla-1">
-      <div class="tabla__header">
-        <div>talle</div>
-        <div>cm</div>
-      </div>
-      <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
-      <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
-      <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
-      <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">25</div></div>
-      <div class="tabla__row"><div class="tabla__cell">39</div><div class="tabla__cell">25,5</div></div>
-      <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">26</div></div>
-    </div>
+  <!-- tabla-2: FURIA/ANTO/MELINA/BRILLIT (productId=2) -->
+  <div class="tabla tabla-2">
+    <div class="tabla__header"><div>talle</div><div>cm</div></div>
+    <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
+    <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
+    <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
+    <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">24,5</div></div>
+    <div class="tabla__row"><div class="tabla__cell">39</div><div class="tabla__cell">25</div></div>
+    <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">25,5</div></div>
+  </div>
 
-    <!-- tabla-2: FURIA/ANTO/MELINA/BRILLIT (productId=2) -->
-    <div class="tabla tabla-2">
-      <div class="tabla__header">
-        <div>talle</div>
-        <div>cm</div>
-      </div>
-      <div class="tabla__row"><div class="tabla__cell">35</div><div class="tabla__cell">23</div></div>
-      <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
-      <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
-      <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">24,5</div></div>
-      <div class="tabla__row"><div class="tabla__cell">39</div><div class="tabla__cell">25</div></div>
-      <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">25,5</div></div>
-    </div>
-
-    <!-- tabla-3: KATY/JADE/VERA (productId=3) -->
-    <div class="tabla tabla-3">
-      <div class="tabla__header">
-        <div>talle</div>
-        <div>cm</div>
-      </div>
-      <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
-      <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
-      <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">25</div></div>
-      <div class="tabla__row"><div class="tabla__cell">39</div><div class="tabla__cell">25,5</div></div>
-      <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">26,5</div></div>
-    </div>
-
+  <!-- tabla-3: KATY/JADE/VERA (productId=3) -->
+  <div class="tabla tabla-3">
+    <div class="tabla__header"><div>talle</div><div>cm</div></div>
+    <div class="tabla__row"><div class="tabla__cell">36</div><div class="tabla__cell">23,5</div></div>
+    <div class="tabla__row"><div class="tabla__cell">37</div><div class="tabla__cell">24</div></div>
+    <div class="tabla__row"><div class="tabla__cell">38</div><div class="tabla__cell">25</div></div>
+    <div class="tabla__row"><div class="tabla__cell">39</div><div class="tabla__cell">25,5</div></div>
+    <div class="tabla__row"><div class="tabla__cell">40</div><div class="tabla__cell">26,5</div></div>
   </div>
 
   <script>
     var t1 = document.querySelector('.tabla-1');
     var t2 = document.querySelector('.tabla-2');
     var t3 = document.querySelector('.tabla-3');
-
     var productId = new URLSearchParams(window.location.search).get('productId');
 
     if (productId == 2) {
-      t1.style.display = 'none'; t2.style.display = 'flex'; t3.style.display = 'none';
+      t2.style.display = 'flex';
     } else if (productId == 3) {
-      t1.style.display = 'none'; t2.style.display = 'none'; t3.style.display = 'flex';
+      t3.style.display = 'flex';
     } else {
-      t1.style.display = 'flex'; t2.style.display = 'none'; t3.style.display = 'none';
+      t1.style.display = 'flex';
     }
   </script>
 

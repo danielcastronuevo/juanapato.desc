@@ -82,8 +82,6 @@ body {
 }
 
 /* ===== TALLES ===== */
-.talles-wrap { padding: 0.85rem 1rem; }
-
 .talles-intro {
   font-size: 0.86rem;
   color: var(--gray);
@@ -94,14 +92,20 @@ body {
 .talles-img {
   display: block;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   margin: 0 auto 0.9rem;
   border-radius: 5px;
   border: 1px solid #FFD6EB;
 }
 
-/* Table cells */
-.tabla { width: 100%; font-family: sans-serif; }
+/* Tabla: oculta por default, JS la muestra con display:flex */
+.tabla {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--pink);
+  font-family: sans-serif;
+}
 .tabla__header {
   display: flex;
   justify-content: space-around;
@@ -122,7 +126,6 @@ body {
 .tabla__cell + .tabla__cell { border-left: 1px solid var(--pink); }
 
 /* ===== INFO / PAGO ===== */
-.info-wrap { padding: 0.85rem 1rem; }
 
 .info-item {
   display: flex;
