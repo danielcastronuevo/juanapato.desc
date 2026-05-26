@@ -3,146 +3,448 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juanapatos</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Juanapatos — Guía de implementación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pink: #FF307C;
+      --pink-pale: #FFF0F7;
+      --pink-border: #FFD6EB;
+      --text: #1a1a1a;
+      --muted: #666;
+      --light: #f8f8f8;
+      --border: #e8e8e8;
+      --code-bg: #0f0f0f;
+      --code-text: #d4d4d4;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* HEADER */
+    .site-header {
+      background: linear-gradient(135deg, #FF307C 0%, #c40058 100%);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .site-header__eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.4rem;
+    }
+    .site-header__title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+    }
+    .site-header__sub {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+    /* MAIN */
+    .main { max-width: 760px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+    /* SECTION */
+    .section { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section__title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .section__sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    /* TABLE */
+    .info-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .info-table th {
+      background: var(--pink);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+    }
+    .info-table td {
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table tr:nth-child(even) td { background: var(--light); }
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .badge--pink { background: var(--pink-pale); color: var(--pink); }
+    .badge--dark { background: #1c1c1e; color: #fff; }
+    /* CODE BLOCK */
+    .code-wrap { position: relative; margin-top: 0.75rem; }
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+      font-size: 0.75rem;
+      line-height: 1.65;
+      padding: 1rem 1rem 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      white-space: pre;
+      tab-size: 2;
+      max-height: 380px;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.55rem;
+      right: 0.55rem;
+      background: rgba(255,255,255,0.1);
+      color: #ccc;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, color 0.15s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
+    .copy-btn.copied { background: #22c55e; color: #fff; border-color: #22c55e; }
+    /* NOTE */
+    .note {
+      background: var(--pink-pale);
+      border-left: 3px solid var(--pink);
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+    .note strong { color: var(--text); }
+    /* PILL TAG */
+    .tag {
+      display: inline-block;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin: 0.1rem 0.1rem 0.1rem 0;
+    }
+    /* STEP */
+    .steps { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem; }
+    .step {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .step__num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step__text { font-size: 0.84rem; color: var(--muted); }
+    .step__text strong { color: var(--text); }
+    code {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.05rem 0.35rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--pink);
+    }
+  </style>
 </head>
 <body>
-  <p id="status" class="status">Cargando...</p>
-  <div id="root" hidden></div>
 
-  <script>
-    var sku = new URLSearchParams(location.search).get('sku');
+<header class="site-header">
+  <div class="site-header__eyebrow">Juanapatos · Sistema de descripciones</div>
+  <div class="site-header__title">Guía de implementación</div>
+  <div class="site-header__sub">Iframes en Tienda Nube · GH Pages</div>
+</header>
 
-    if (!sku) {
-      setError('Falta el parámetro ?sku= en la URL.');
-    } else {
-      fetch('products.json')
-        .then(function(r) {
-          if (!r.ok) throw new Error('No se pudo cargar el catálogo.');
-          return r.json();
-        })
-        .then(function(data) {
-          var p = data[sku];
-          if (!p) throw new Error('Producto no encontrado: ' + sku);
-          render(p);
-        })
-        .catch(function(e) { setError(e.message); });
-    }
+<main class="main">
 
-    function setError(msg) {
-      var el = document.getElementById('status');
-      el.className = 'status status--error';
-      el.textContent = msg;
-    }
+  <!-- IFRAMES DISPONIBLES -->
+  <section class="section">
+    <div class="section__title">Iframes disponibles</div>
+    <div class="section__sub">Cada iframe es independiente y se auto-ajusta en altura.</div>
+    <table class="info-table">
+      <thead>
+        <tr><th>Tipo</th><th>Descripción</th><th>Cuándo usarlo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge--pink">🎀 header</span></td>
+          <td>Banner promo 2×1 + contacto WhatsApp</td>
+          <td>Siempre, salvo que el producto esté en preventa</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge--dark">🔥 preventa</span></td>
+          <td>Banner de preventa en negro — precio de lanzamiento</td>
+          <td>Reemplaza al <em>header</em> en nuevos lanzamientos</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge--pink">📏 talles</span></td>
+          <td>Guía de talles con imagen y tabla. Lee <code>?tabla=</code></td>
+          <td>Siempre. Cambiar <code>data-tabla</code> según el modelo</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge--pink">💳 info</span></td>
+          <td>Cuotas, transferencia, envío y seguimiento</td>
+          <td>Siempre, igual para todos los productos</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-    function esc(s) {
-      if (s == null) return '';
-      return String(s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
+  <!-- TABLA DE TALLES -->
+  <section class="section">
+    <div class="section__title">Tabla de talles — cuál usar</div>
+    <div class="section__sub">Definí <code>data-tabla</code> en el iframe de talles según el modelo del producto.</div>
+    <table class="info-table">
+      <thead>
+        <tr><th>data-tabla</th><th>Talles</th><th>Modelos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong> <em style="color:var(--muted);font-size:0.75rem">(default)</em></td>
+          <td>35 – 40</td>
+          <td><span class="tag">General</span></td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td>35 – 40</td>
+          <td><span class="tag">Furia</span><span class="tag">Anto</span><span class="tag">Melina</span><span class="tag">Brillit</span></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td>36 – 40</td>
+          <td><span class="tag">Katy</span><span class="tag">Jade</span><span class="tag">Vera</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-    function caracts(p) {
-      var items = [
-        { ico: '🪡', lbl: 'Material', val: p.material },
-        { ico: '🎨', lbl: 'Color',    val: p.color    },
-        { ico: '👠', lbl: 'Taco',     val: p.taco     },
-        { ico: '✨', lbl: 'Detalle',  val: p.detalle  },
-        { ico: '🛡️', lbl: 'Suela',   val: p.suela    }
-      ].filter(function(i) { return i.val; });
+  <!-- CÓMO IMPLEMENTAR -->
+  <section class="section">
+    <div class="section__title">Cómo implementar</div>
+    <div class="section__sub">Mismo proceso para todos los productos.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <div class="step__text">Abrí el producto en Tienda Nube → <strong>Descripción</strong> → botón <strong>&lt;/&gt; HTML</strong></div>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <div class="step__text">Pegá el código del <strong>Ejemplo completo</strong> de abajo (o el Snippet base si no usás descripción con características)</div>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <div class="step__text">Editá el texto de descripción y los valores de características. Cambiá <code>data-tabla="1"</code> al número correcto según la tabla de arriba</div>
+      </div>
+      <div class="step">
+        <div class="step__num">4</div>
+        <div class="step__text">Si el producto está en <strong>preventa</strong>: eliminá el iframe <code>🎀 header</code> y descomentá el <code>🔥 preventa</code></div>
+      </div>
+    </div>
+  </section>
 
-      return items.map(function(i) {
-        return '<div class="caract__item">'
-          + '<span class="caract__ico">' + i.ico + '</span>'
-          + '<div>'
-          + '<span class="caract__lbl">' + esc(i.lbl) + '</span>'
-          + '<span class="caract__val">' + esc(i.val) + '</span>'
-          + '</div></div>';
-      }).join('');
-    }
+  <!-- SNIPPET BASE -->
+  <section class="section">
+    <div class="section__title">Snippet base</div>
+    <div class="section__sub">Solo iframes, sin bloque de descripción. Ideal para productos simples.</div>
+    <div class="code-wrap">
+      <pre class="code-block" id="code-base"></pre>
+      <button class="copy-btn" onclick="copySnippet('base', this)">Copiar</button>
+    </div>
+  </section>
 
-    function render(p) {
-      document.getElementById('status').hidden = true;
-      var root = document.getElementById('root');
-      root.hidden = false;
+  <!-- EJEMPLO COMPLETO -->
+  <section class="section">
+    <div class="section__title">Ejemplo completo — Sandalia Pía</div>
+    <div class="section__sub">Con descripción, características y todos los iframes. Editá el contenido marcado con ✏️.</div>
+    <div class="code-wrap">
+      <pre class="code-block" id="code-complete"></pre>
+      <button class="copy-btn" onclick="copySnippet('complete', this)">Copiar</button>
+    </div>
+    <div class="note">
+      <strong>Preventa vs. 2×1:</strong> En el ejemplo, el iframe <code>🔥 preventa</code> aparece comentado. Para activarlo, eliminá el bloque <code>🎀 header</code> y descomentá el de preventa.
+    </div>
+  </section>
 
-      root.innerHTML =
+</main>
 
-        /* 1. Promo 2x1 */
-        '<div class="promo">'
-        + '<div class="promo__badge">2×1</div>'
-        + '<div class="promo__title">¡Llevás 2 y pagás 1!</div>'
-        + '<p class="promo__cats">Válido en toda la colección: sandalias, zapatos, botas y botines.</p>'
-        + '<p class="promo__how">Elegís 2 pares → el de menor precio va gratis.</p>'
-        + '</div>'
+<script>
+var snippets = {};
 
-        /* 2. Aviso IMPORTANTE */
-        + '<div class="aviso">'
-        + '<div class="aviso__title">⚠ Importante</div>'
-        + '<p class="aviso__body">Para coordinar la promo o consultar disponibilidad, escribinos por WhatsApp:<br>'
-        + '<a href="https://wa.me/5491125151515">15-2515-1515</a> — respondemos enseguida.</p>'
-        + '</div>'
+snippets.base = [
+'🎀 <!-- PROMO 2×1 (reemplazar por 🔥 PREVENTA si el producto está en lanzamiento) -->',
+'<p style="margin-bottom:1.25rem"><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="header"></iframe></p>',
+'',
+'📏 <!-- TALLES — cambiar data-tabla: 1=General | 2=Furia/Anto/Melina/Brillit | 3=Katy/Jade/Vera -->',
+'<p style="margin-bottom:1rem"><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="talles" data-tabla="1"></iframe></p>',
+'',
+'💳 <!-- PAGO Y ENVÍO -->',
+'<p><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="info"></iframe></p>',
+'',
+'⚙️ <!-- SCRIPT — no modificar -->',
+'<script>',
+'(function(){',
+'  var BASE="https://danielcastronuevo.github.io/juanapato.desc";',
+'  var slug=location.pathname.replace(/^\\/productos\\//,"").replace(/\\/$/,"");',
+'  var sku=slug.replace(/-[a-z0-9]{5}$/,"");',
+'  document.querySelectorAll("iframe[data-juanapatos]").forEach(function(f){',
+'    f.src=BASE+"/"+f.getAttribute("data-juanapatos")+"/?sku="+sku+"&tabla="+(f.getAttribute("data-tabla")||"1");',
+'  });',
+'  window.addEventListener("message",function(e){',
+'    if(!e.data||!e.data.juanapatosIframe)return;',
+'    document.querySelectorAll("iframe[data-juanapatos]").forEach(function(f){',
+'      try{var a=new URL(f.src),b=new URL(e.data.src);',
+'        if(a.hostname===b.hostname&&a.pathname===b.pathname)f.style.height=e.data.height+"px";',
+'      }catch(x){}',
+'    });',
+'  });',
+'})();',
+'<\\/script>'
+].join('\n');
 
-        /* 3. Nombre + descripción */
-        + '<div class="sec">'
-        + '<h1 class="prod__name">' + esc(p.nombre) + ' <span>' + esc(p.color) + '</span></h1>'
-        + '<p class="prod__desc">' + esc(p.descripcion) + '</p>'
-        + '</div>'
+snippets.complete = [
+'🎀 <!-- PROMO 2×1 (quitar si el producto está en PREVENTA) -->',
+'<p style="margin-bottom:1.25rem"><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="header"></iframe></p>',
+'',
+'🔥 <!-- PREVENTA — descomentar y quitar el 🎀 de arriba si el producto está en lanzamiento',
+'<p style="margin-bottom:1.25rem"><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="preventa"></iframe></p>',
+'-->',
+'',
+'✏️ <!-- EDITAR: descripción y características del producto -->',
+'<div style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',sans-serif;color:#1a1a1a;margin-bottom:1.5rem">',
+'',
+'  <p style="font-size:0.92rem;line-height:1.75;color:#444;margin-bottom:1.25rem">',
+'    Las sandalias Pía son el equilibrio ideal entre elegancia y actitud.',
+'    Confeccionadas en yute, destacan por su diseño moderno con detalle de',
+'    hebilla. Su taco ancho y la suela con base de goma dentada garantizan',
+'    un andar firme y seguro, perfectas para acompañar tus looks urbanos.',
+'  </p>',
+'',
+'  <div style="font-size:0.6rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#FF307C;padding-bottom:0.4rem;border-bottom:1.5px solid #FFD6EB;margin-bottom:0.85rem">',
+'    Características',
+'  </div>',
+'',
+'  <!-- ✏️ Repetir este bloque por cada característica. El último va sin border-bottom. -->',
+'  <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0;border-bottom:1px solid #FFD6EB">',
+'    <div style="width:6px;height:6px;border-radius:50%;background:#FF307C;flex-shrink:0"></div>',
+'    <span style="font-size:0.75rem;font-weight:600;color:#999;min-width:70px">Material</span>',
+'    <span style="font-size:0.82rem;font-weight:600;color:#1a1a1a">Yute</span>',
+'  </div>',
+'  <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0;border-bottom:1px solid #FFD6EB">',
+'    <div style="width:6px;height:6px;border-radius:50%;background:#FF307C;flex-shrink:0"></div>',
+'    <span style="font-size:0.75rem;font-weight:600;color:#999;min-width:70px">Color</span>',
+'    <span style="font-size:0.82rem;font-weight:600;color:#1a1a1a">Negro</span>',
+'  </div>',
+'  <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0;border-bottom:1px solid #FFD6EB">',
+'    <div style="width:6px;height:6px;border-radius:50%;background:#FF307C;flex-shrink:0"></div>',
+'    <span style="font-size:0.75rem;font-weight:600;color:#999;min-width:70px">Taco</span>',
+'    <span style="font-size:0.82rem;font-weight:600;color:#1a1a1a">4 cm aprox.</span>',
+'  </div>',
+'  <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0;border-bottom:1px solid #FFD6EB">',
+'    <div style="width:6px;height:6px;border-radius:50%;background:#FF307C;flex-shrink:0"></div>',
+'    <span style="font-size:0.75rem;font-weight:600;color:#999;min-width:70px">Detalle</span>',
+'    <span style="font-size:0.82rem;font-weight:600;color:#1a1a1a">Hebilla</span>',
+'  </div>',
+'  <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0">',
+'    <div style="width:6px;height:6px;border-radius:50%;background:#FF307C;flex-shrink:0"></div>',
+'    <span style="font-size:0.75rem;font-weight:600;color:#999;min-width:70px">Suela</span>',
+'    <span style="font-size:0.82rem;font-weight:600;color:#1a1a1a">Goma antideslizante</span>',
+'  </div>',
+'',
+'</div>',
+'',
+'📏 <!-- TALLES — cambiar data-tabla: 1=General | 2=Furia/Anto/Melina/Brillit | 3=Katy/Jade/Vera -->',
+'<p style="margin-bottom:1rem"><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="talles" data-tabla="1"></iframe></p>',
+'',
+'💳 <!-- PAGO Y ENVÍO -->',
+'<p><iframe style="display:block;border:none" width="100%" frameborder="0" scrolling="no" data-juanapatos="info"></iframe></p>',
+'',
+'⚙️ <!-- SCRIPT — no modificar -->',
+'<script>',
+'(function(){',
+'  var BASE="https://danielcastronuevo.github.io/juanapato.desc";',
+'  var slug=location.pathname.replace(/^\\/productos\\//,"").replace(/\\/$/,"");',
+'  var sku=slug.replace(/-[a-z0-9]{5}$/,"");',
+'  document.querySelectorAll("iframe[data-juanapatos]").forEach(function(f){',
+'    f.src=BASE+"/"+f.getAttribute("data-juanapatos")+"/?sku="+sku+"&tabla="+(f.getAttribute("data-tabla")||"1");',
+'  });',
+'  window.addEventListener("message",function(e){',
+'    if(!e.data||!e.data.juanapatosIframe)return;',
+'    document.querySelectorAll("iframe[data-juanapatos]").forEach(function(f){',
+'      try{var a=new URL(f.src),b=new URL(e.data.src);',
+'        if(a.hostname===b.hostname&&a.pathname===b.pathname)f.style.height=e.data.height+"px";',
+'      }catch(x){}',
+'    });',
+'  });',
+'})();',
+'<\\/script>'
+].join('\n');
 
-        /* 4. Características */
-        + '<div class="sec">'
-        + '<div class="sec__label">Características</div>'
-        + '<div class="caract">' + caracts(p) + '</div>'
-        + '</div>'
+// Render code blocks
+document.getElementById('code-base').textContent = snippets.base;
+document.getElementById('code-complete').textContent = snippets.complete;
 
-        /* 5. Cuidados */
-        + '<div class="sec">'
-        + '<div class="sec__label">Cuidados del calzado</div>'
-        + '<div class="cuidados">⚠️ ' + esc(p.cuidados) + '</div>'
-        + '</div>'
-
-        /* 6. Guía de talles */
-        + '<div class="sec">'
-        + '<div class="sec__label">Guía de talles</div>'
-        + '<p class="talles__intro">Medí tu pie descalza en centímetros, desde el talón hasta el dedo más largo. Ante la duda entre dos talles, llevá el mayor.</p>'
-        + '<img src="grafico-medida.jpg" alt="Cómo medir tu pie" class="talles__img">'
-        + '<table class="talles__tabla">'
-        + '<thead><tr><th>Talle ARG</th><th>Largo del pie</th></tr></thead>'
-        + '<tbody>'
-        + '<tr><td>35</td><td>22.5 cm</td></tr>'
-        + '<tr><td>36</td><td>23 cm</td></tr>'
-        + '<tr><td>37</td><td>23.5 cm</td></tr>'
-        + '<tr><td>38</td><td>24 cm</td></tr>'
-        + '<tr><td>39</td><td>24.5 cm</td></tr>'
-        + '<tr><td>40</td><td>25 cm</td></tr>'
-        + '</tbody></table>'
-        + '</div>'
-
-        /* 7. Pago y envío */
-        + '<div class="sec">'
-        + '<div class="sec__label">Pago y envío</div>'
-        + '<div class="pago">'
-        + '<div class="pago__item"><span class="pago__ico">💳</span><div>'
-        + '<span class="pago__strong">' + esc(p.cuotas) + ' cuotas sin interés</span>'
-        + '<span class="pago__sub">Con todas las tarjetas de crédito</span>'
-        + '</div></div>'
-        + '<div class="pago__item"><span class="pago__ico">🏦</span><div>'
-        + '<span class="pago__strong">20% OFF con transferencia bancaria</span>'
-        + '<span class="pago__sub">Descuento al abonar por transferencia o CBU</span>'
-        + '</div></div>'
-        + '<div class="pago__item"><span class="pago__ico">📦</span><div>'
-        + '<span class="pago__strong">Envío gratis a todo el país</span>'
-        + '<span class="pago__sub">En compras que califican según destino</span>'
-        + '</div></div>'
-        + '<div class="pago__item"><span class="pago__ico">🔍</span><div>'
-        + '<span class="pago__strong">Seguimiento de tu pedido</span>'
-        + '<span class="pago__sub">Te enviamos el número de tracking por WhatsApp</span>'
-        + '</div></div>'
-        + '</div>'
-        + '</div>';
-    }
-  </script>
+// Copy to clipboard
+function copySnippet(key, btn) {
+  var text = snippets[key].replace(/<\\/script>/g, '</script>');
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copiar';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    // fallback
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
 </body>
 </html>
