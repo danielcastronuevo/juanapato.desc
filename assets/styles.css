@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: var(--text);
   background: var(--white);
@@ -30,7 +30,7 @@ body {
   background: linear-gradient(145deg, #FF307C 0%, #c40058 100%);
   color: #fff;
   text-align: center;
-  padding: 1.6rem 1rem 2.2rem;
+  padding: 1.6rem 1rem 2.4rem;
   overflow: hidden;
 }
 .banner__dot {
@@ -66,72 +66,41 @@ body {
 }
 .banner__title {
   position: relative;
-  font-size: 1.05rem;
-  font-weight: 900;
+  font-size: 1rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 0.55rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
 }
 .banner__cats {
   position: relative;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 500;
   opacity: 0.9;
   margin-bottom: 0.3rem;
-  letter-spacing: 0.3px;
 }
 .banner__how {
   position: relative;
-  font-size: 0.72rem;
+  font-size: 0.73rem;
   font-weight: 400;
   font-style: italic;
   opacity: 0.72;
+  margin-bottom: 0.6rem;
 }
-
-/* ══════════════════════════════
-   AVISO
-══════════════════════════════ */
-.aviso {
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  background: var(--pink-pale);
-  border-top: 2px solid var(--pink);
-  padding: 0.8rem 1rem;
-}
-.aviso__ico {
-  color: var(--pink);
-  font-style: normal;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.aviso__label {
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--pink);
-  margin-bottom: 0.2rem;
-}
-.aviso__text {
-  font-size: 0.8rem;
-  color: var(--muted);
-  line-height: 1.55;
-}
-.aviso__text a {
-  color: var(--pink);
-  font-weight: 700;
-  text-decoration: none;
+.banner__aviso {
+  position: relative;
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 /* ══════════════════════════════
    ETIQUETA DE SECCIÓN
 ══════════════════════════════ */
 .sec-label {
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 2.8px;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--pink);
   padding-bottom: 0.45rem;
@@ -168,8 +137,6 @@ body {
   width: 100%;
   max-width: 230px;
   margin: 0 auto 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 22px rgba(255,48,124,0.18);
 }
 
 .tabla {
@@ -184,16 +151,15 @@ body {
   display: flex;
   background: linear-gradient(90deg, var(--pink) 0%, var(--pink-dark) 100%);
   color: #fff;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 2.5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 .tabla__header div { flex: 1; padding: 9px 12px; text-align: center; }
 .tabla__row {
   display: flex;
   border-top: 1px solid var(--pink-border);
-  transition: background 0.1s;
 }
 .tabla__row:nth-child(even) { background: var(--pink-pale); }
 .tabla__cell {
@@ -218,15 +184,14 @@ body {
 .info-item:last-child { border-bottom: none; }
 
 .info-item__ico {
-  width: 40px;
-  height: 40px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #FF307C 0%, #EF99FF 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.05rem;
+  stroke: var(--pink);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .info-item__strong {
