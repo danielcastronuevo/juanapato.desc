@@ -1,0 +1,226 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink: #e91e8c;
+  --pink-dark: #c0166f;
+  --red: #d32f2f;
+  --dark: #1a1a1a;
+  --mid: #555;
+  --light: #f6f6f6;
+  --border: #e8e8e8;
+  --white: #fff;
+  --yellow-bg: #fffde7;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: var(--dark);
+  background: var(--white);
+  line-height: 1.5;
+}
+
+/* ===== PROMO BANNER ===== */
+.promo {
+  background: linear-gradient(135deg, #e91e8c 0%, #9c0057 100%);
+  color: #fff;
+  padding: 1.4rem 1.25rem 1.25rem;
+  text-align: center;
+}
+.promo__badge {
+  display: inline-block;
+  background: #fff;
+  color: var(--pink);
+  font-size: 1.9rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0.25rem 0.85rem;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.5px;
+}
+.promo__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.55rem;
+  text-transform: uppercase;
+}
+.promo__cats {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.3rem;
+}
+.promo__how {
+  font-size: 0.82rem;
+  opacity: 0.78;
+  font-style: italic;
+}
+
+/* ===== AVISO ===== */
+.aviso {
+  background: #ffeaea;
+  border-left: 4px solid var(--red);
+  padding: 0.85rem 1.25rem;
+}
+.aviso__title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.3rem;
+}
+.aviso__body {
+  font-size: 0.88rem;
+  color: var(--red);
+  line-height: 1.55;
+}
+.aviso__body a {
+  color: var(--red);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--red);
+}
+
+/* ===== SECCIONES ===== */
+.sec {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.sec:last-child { border-bottom: none; }
+.sec__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 0.7rem;
+}
+
+/* ===== PRODUCTO HEADER ===== */
+.prod__name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.prod__name span { color: var(--pink); }
+.prod__desc {
+  font-size: 0.9rem;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+/* ===== CARACTERÍSTICAS ===== */
+.caract {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.caract__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--light);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+}
+.caract__ico { font-size: 1rem; flex-shrink: 0; }
+.caract__lbl {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--mid);
+  display: block;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.caract__val {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+/* ===== CUIDADOS ===== */
+.cuidados {
+  background: var(--yellow-bg);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--dark);
+}
+
+/* ===== TALLES ===== */
+.talles__intro {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
+}
+.talles__img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.talles__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.talles__tabla th {
+  background: var(--pink);
+  color: #fff;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0.45rem 0.75rem;
+  text-align: center;
+}
+.talles__tabla td {
+  padding: 0.42rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.talles__tabla tr:last-child td { border-bottom: none; }
+.talles__tabla tr:nth-child(even) td { background: var(--light); }
+
+/* ===== PAGO & ENVÍO ===== */
+.pago { display: grid; gap: 0.5rem; }
+.pago__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--light);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+}
+.pago__ico { font-size: 1.15rem; flex-shrink: 0; }
+.pago__strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark);
+  display: block;
+  line-height: 1.25;
+}
+.pago__sub {
+  font-size: 0.78rem;
+  color: var(--mid);
+  display: block;
+}
+
+/* ===== ESTADOS ===== */
+.status {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--mid);
+  font-size: 0.92rem;
+}
+.status--error { color: var(--red); }

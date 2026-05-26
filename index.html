@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juanapatos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <p id="status" class="status">Cargando...</p>
+  <div id="root" hidden></div>
+
+  <script>
+    var sku = new URLSearchParams(location.search).get('sku');
+
+    if (!sku) {
+      setError('Falta el parámetro ?sku= en la URL.');
+    } else {
+      fetch('products.json')
+        .then(function(r) {
+          if (!r.ok) throw new Error('No se pudo cargar el catálogo.');
+          return r.json();
+        })
+        .then(function(data) {
+          var p = data[sku];
+          if (!p) throw new Error('Producto no encontrado: ' + sku);
+          render(p);
+        })
+        .catch(function(e) { setError(e.message); });
+    }
+
+    function setError(msg) {
+      var el = document.getElementById('status');
+      el.className = 'status status--error';
+      el.textContent = msg;
+    }
+
+    function esc(s) {
+      if (s == null) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function caracts(p) {
+      var items = [
+        { ico: '🪡', lbl: 'Material', val: p.material },
+        { ico: '🎨', lbl: 'Color',    val: p.color    },
+        { ico: '👠', lbl: 'Taco',     val: p.taco     },
+        { ico: '✨', lbl: 'Detalle',  val: p.detalle  },
+        { ico: '🛡️', lbl: 'Suela',   val: p.suela    }
+      ].filter(function(i) { return i.val; });
+
+      return items.map(function(i) {
+        return '<div class="caract__item">'
+          + '<span class="caract__ico">' + i.ico + '</span>'
+          + '<div>'
+          + '<span class="caract__lbl">' + esc(i.lbl) + '</span>'
+          + '<span class="caract__val">' + esc(i.val) + '</span>'
+          + '</div></div>';
+      }).join('');
+    }
+
+    function render(p) {
+      document.getElementById('status').hidden = true;
+      var root = document.getElementById('root');
+      root.hidden = false;
+
+      root.innerHTML =
+
+        /* 1. Promo 2x1 */
+        '<div class="promo">'
+        + '<div class="promo__badge">2×1</div>'
+        + '<div class="promo__title">¡Llevás 2 y pagás 1!</div>'
+        + '<p class="promo__cats">Válido en toda la colección: sandalias, zapatos, botas y botines.</p>'
+        + '<p class="promo__how">Elegís 2 pares → el de menor precio va gratis.</p>'
+        + '</div>'
+
+        /* 2. Aviso IMPORTANTE */
+        + '<div class="aviso">'
+        + '<div class="aviso__title">⚠ Importante</div>'
+        + '<p class="aviso__body">Para coordinar la promo o consultar disponibilidad, escribinos por WhatsApp:<br>'
+        + '<a href="https://wa.me/5491125151515">15-2515-1515</a> — respondemos enseguida.</p>'
+        + '</div>'
+
+        /* 3. Nombre + descripción */
+        + '<div class="sec">'
+        + '<h1 class="prod__name">' + esc(p.nombre) + ' <span>' + esc(p.color) + '</span></h1>'
+        + '<p class="prod__desc">' + esc(p.descripcion) + '</p>'
+        + '</div>'
+
+        /* 4. Características */
+        + '<div class="sec">'
+        + '<div class="sec__label">Características</div>'
+        + '<div class="caract">' + caracts(p) + '</div>'
+        + '</div>'
+
+        /* 5. Cuidados */
+        + '<div class="sec">'
+        + '<div class="sec__label">Cuidados del calzado</div>'
+        + '<div class="cuidados">⚠️ ' + esc(p.cuidados) + '</div>'
+        + '</div>'
+
+        /* 6. Guía de talles */
+        + '<div class="sec">'
+        + '<div class="sec__label">Guía de talles</div>'
+        + '<p class="talles__intro">Medí tu pie descalza en centímetros, desde el talón hasta el dedo más largo. Ante la duda entre dos talles, llevá el mayor.</p>'
+        + '<img src="grafico-medida.jpg" alt="Cómo medir tu pie" class="talles__img">'
+        + '<table class="talles__tabla">'
+        + '<thead><tr><th>Talle ARG</th><th>Largo del pie</th></tr></thead>'
+        + '<tbody>'
+        + '<tr><td>35</td><td>22.5 cm</td></tr>'
+        + '<tr><td>36</td><td>23 cm</td></tr>'
+        + '<tr><td>37</td><td>23.5 cm</td></tr>'
+        + '<tr><td>38</td><td>24 cm</td></tr>'
+        + '<tr><td>39</td><td>24.5 cm</td></tr>'
+        + '<tr><td>40</td><td>25 cm</td></tr>'
+        + '</tbody></table>'
+        + '</div>'
+
+        /* 7. Pago y envío */
+        + '<div class="sec">'
+        + '<div class="sec__label">Pago y envío</div>'
+        + '<div class="pago">'
+        + '<div class="pago__item"><span class="pago__ico">💳</span><div>'
+        + '<span class="pago__strong">' + esc(p.cuotas) + ' cuotas sin interés</span>'
+        + '<span class="pago__sub">Con todas las tarjetas de crédito</span>'
+        + '</div></div>'
+        + '<div class="pago__item"><span class="pago__ico">🏦</span><div>'
+        + '<span class="pago__strong">20% OFF con transferencia bancaria</span>'
+        + '<span class="pago__sub">Descuento al abonar por transferencia o CBU</span>'
+        + '</div></div>'
+        + '<div class="pago__item"><span class="pago__ico">📦</span><div>'
+        + '<span class="pago__strong">Envío gratis a todo el país</span>'
+        + '<span class="pago__sub">En compras que califican según destino</span>'
+        + '</div></div>'
+        + '<div class="pago__item"><span class="pago__ico">🔍</span><div>'
+        + '<span class="pago__strong">Seguimiento de tu pedido</span>'
+        + '<span class="pago__sub">Te enviamos el número de tracking por WhatsApp</span>'
+        + '</div></div>'
+        + '</div>'
+        + '</div>';
+    }
+  </script>
+</body>
+</html>
