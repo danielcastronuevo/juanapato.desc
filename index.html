@@ -422,7 +422,7 @@ document.getElementById('code-complete').textContent = snippets.complete;
 
 // Copy to clipboard
 function copySnippet(key, btn) {
-  var text = snippets[key].replace(/<\\/script>/g, '</script>');
+  var text = snippets[key].split('<\\/script>').join('</' + 'script>');
   navigator.clipboard.writeText(text).then(function() {
     btn.textContent = '✓ Copiado';
     btn.classList.add('copied');
