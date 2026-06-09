@@ -1,0 +1,2 @@
+<!-- Este iframe llama a un sitio web alojado en github de donde trae la tabla de talles -->
+<p><iframe src="https://danielcastronuevo.github.io/tabla-de-talles-juanapatos/" width="100%" height="270px" frameborder="0"></iframe></p>

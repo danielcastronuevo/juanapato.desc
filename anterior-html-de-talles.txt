@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- La tabla de talles GENERAL -->
+    <div class="tabla-1" style="display: flex; flex-direction: column; border: 1px solid #e74c3c; width: 100%; font-family: sans-serif;">
+        <div style="display: flex; justify-content: space-around; background: #e74c3c; color: #fff;">
+        <div style="padding: 8px 0;">talle</div>
+        
+        <div style="padding: 8px 0;">cm</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">35</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">23</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">36</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">23,5</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">37</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">24</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">38</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">25</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">39</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">25,5</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">40</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">26</div>
+        </div>
+    </div>
+
+    <!-- La tabla de talles FURIA/ANTO/MELINA/BRILLIT -->
+        <div class="tabla-2" style="display: flex; flex-direction: column; border: 1px solid #e74c3c; width: 100%; font-family: sans-serif;">
+            <div style="display: flex; justify-content: space-around; background: #e74c3c; color: #fff;">
+            <div style="padding: 8px 0;">talle</div>
+            
+            <div style="padding: 8px 0;">cm</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+            <div style="padding: 8px; width: 50%;">35</div>
+            
+            <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">23</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+            <div style="padding: 8px; width: 50%;">36</div>
+            
+            <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">23,5</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+            <div style="padding: 8px; width: 50%;">37</div>
+            
+            <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">24</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+            <div style="padding: 8px; width: 50%;">38</div>
+            
+            <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">24,5</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+            <div style="padding: 8px; width: 50%;">39</div>
+            
+            <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">25</div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+            <div style="padding: 8px; width: 50%;">40</div>
+            
+            <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">25,5</div>
+            </div>
+        </div>
+
+    <!-- La tabla de talles KATY/JADE/VERA -->
+    <div class="tabla-3" style="display: flex; flex-direction: column; border: 1px solid #e74c3c; width: 100%; font-family: sans-serif;">
+        <div style="display: flex; justify-content: space-around; background: #e74c3c; color: #fff;">
+        <div style="padding: 8px 0;">talle</div>
+        
+        <div style="padding: 8px 0;">cm</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">36</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">23,5</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">37</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">24</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">38</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">25</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">39</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">25,5</div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; border-top: 1px solid #e74c3c;">
+        <div style="padding: 8px; width: 50%;">40</div>
+        
+        <div style="padding: 8px; width: 50%; border-left: 1px solid #e74c3c;">26,5</div>
+        </div>
+        </div>
+    </div>
+    <script>
+    const tabla1 = document.querySelector(".tabla-1")
+    const tabla2 = document.querySelector(".tabla-2")
+    const tabla3 = document.querySelector(".tabla-3")
+
+
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        const productId = getParameterByName('productId');
+        if (productId) {
+            if(productId==1){
+                tabla1.style.display = 'flex'
+                tabla2.style.display = 'none'
+                tabla3.style.display = 'none'
+            }
+            else if(productId==2){
+                tabla1.style.display = 'none'
+                tabla2.style.display = 'flex'
+                tabla3.style.display = 'none'
+            }
+            else if(productId==3){
+                tabla1.style.display = 'none'
+                tabla2.style.display = 'none'
+                tabla3.style.display = 'flex'
+            }
+        }
+        //Básicamente el else hace lo mismo que el if, pero me ahorro tener que hacerlo compatible con el sistema que ya funciona
+        else{
+            tabla1.style.display = 'flex'
+            tabla2.style.display = 'none'
+            tabla3.style.display = 'none'
+        }
+    </script>
+</body>
+</html>
